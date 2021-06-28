@@ -24,7 +24,7 @@ if (localStorage.getItem('theme') === Theme.DARK) {
     checkBoxRef.checked = true;
 } else bodyColorRef.setAttribute('class', 'light-theme');
 
-bodyColorRef.addEventListener('change', handleChange);
+checkBoxRef.addEventListener('change', handleChange);
 
 function handleChange() {
     if (checkBoxRef.checked) {
