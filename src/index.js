@@ -8,36 +8,30 @@ const menuBoard = document.querySelector('.js-menu');
 menuBoard.innerHTML = menuTemplates(menu);
 
 
- const checkBoxRef = document.querySelector('#theme-switch-toggle')
-const bodyRef = document.querySelector('body')
+const checkBoxRef = document.querySelector('#theme-switch-toggle')
+const bodyColorRef = document.querySelector('body')
 
 
 const Theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme',
 };
-checkBoxRef.checked = JSON.parse(localStorage.getItem('checkbox'))
-changeTheme()
 
-function changeTheme() {
-  if (checkBoxRef.checked) {
-    bodyRef.classList.add(Theme.DARK)
-  }else if(!checkBoxRef.checked)
-   
-   
-   {bodyRef.classList.remove(Theme.LIGHT)}
-    
-}
- checkBoxRef.addEventListener('change', onChange)
-function onChange (e) {
-  if(e.currentTarget.checked)
-  {
-    bodyRef.classList.add(Theme.DARK)
-    bodyRef.classList.remove(Theme.LIGHT)
-localStorage.setItem('checkbox', checkBoxRef.checked)
-  } else {
-    bodyRef.classList.add(Theme.LIGHT)
-    bodyRef.classList.remove(Theme.DARK)
-localStorage.setItem('checkbox', checkBoxRef.checked)
-  }
+
+bodyColorRef.classList.add(localStorage.getItem('theme'));
+
+if (localStorage.getItem('theme') === Theme.DARK) {
+    checkBoxRef.checked = true;
+} else bodyColorRef.setAttribute('class', 'light-theme');
+
+bodyColorRef.addEventListener('change', handleChange);
+
+function handleChange() {
+    if (checkBoxRef.checked) {
+        localStorage.setItem('theme', Theme.DARK);
+        bodyColorRef.setAttribute('class', 'dark-theme');
+    } else {
+        localStorage.setItem('theme', Theme.LIGHT);
+        bodyColorRef.setAttribute('class', 'light-theme');
+    }
 }
