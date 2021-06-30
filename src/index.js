@@ -20,9 +20,15 @@ const Theme = {
 
 bodyColorRef.classList.add(localStorage.getItem('theme'));
 
+
+
 if (localStorage.getItem('theme') === Theme.DARK) {
-    checkBoxRef.checked = true;
-} else bodyColorRef.setAttribute('class', 'light-theme');
+bodyColorRef.classList.add(Theme.DARK);
+checkBoxRef.checked = true;
+} else {
+bodyColorRef.classList.add(Theme.LIGHT);
+}
+
 
 checkBoxRef.addEventListener('change', handleChange);
 
